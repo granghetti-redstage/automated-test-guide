@@ -1,0 +1,89 @@
+version: '3.2'
+services:
+    apache:
+        image: granghetti/magento2-apache:1.1
+        ports:
+            - '80:80'
+        volumes:
+            - ./:/var/www/html
+            - ~/.composer:/var/www/.composer
+            - ~/.npm:/var/www/.npm
+        environment:
+            XDEBUG_CONFIG: 'remote_host=172.17.0.1 remote_port=9000 remote_enable=1;'
+            PHP_IDE_CONFIG: 'serverName=PHPSTORM'
+        depends_on:
+            - db
+        links:
+            - db
+        networks:
+            - magento2-tests-network
+
+    db:
+        image: mariadb
+        ports:
+            - 3300:3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=magento
+            - MYSQL_USER=magento
+            - MYSQL_PASSWORD=magento
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - magento2-tests-network
+
+    redis:
+        image: redis
+        ports:
+            - 6379
+        networks:
+            - magento2-tests-network
+
+    redis-session:
+        image: redis
+        ports:
+            - 6379
+        networks:
+            - magento2-tests-network
+
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - 1025:1025
+            - 8025:8025
+        networks:
+            - magento2-tests-network
+
+    hub:
+        image: selenium/hub:3.141.59-copernicium
+        ports:
+            - '4444:4444'
+        environment:
+            GRID_BROWSER_TIMEOUT: 3400
+            GRID_TIMEOUT: 3600
+        networks:
+            - magento2-tests-network
+
+    chrome:
+        image: selenium/node-chrome-debug:3.141.59-copernicium
+        ports:
+            - '5900:5900'
+        volumes:
+            - ./selenium/chrome:/selenium/chrome
+        depends_on:
+            - hub
+        environment:
+            HUB_HOST: hub
+            GRID_MAX_SESSION: 50
+            NODE_MAX_SESSION: 50
+            NODE_MAX_INSTANCES: 50
+        networks:
+            - magento2-tests-network
+
+networks:
+    magento2-tests-network:
+        driver: bridge
+
+volumes:
+    dbdata:
+        driver: local
