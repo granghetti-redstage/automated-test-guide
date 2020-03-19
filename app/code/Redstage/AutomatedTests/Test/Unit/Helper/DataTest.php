@@ -38,4 +38,13 @@ class DataTest extends TestCase
     {
         $this->assertFalse($this->helper->isNumeric('test'));
     }
+
+    /**
+     * @return void
+     */
+    public function testClearString()
+    {
+        $clearedString = $this->helper->clearString("Test,\t\n Text  ");
+        $this->assertEquals($clearedString, 'Test,Text');
+    }
 }

@@ -21,4 +21,15 @@ class Data extends AbstractHelper
         }
         return true;
     }
+
+    /**
+     * Clear string
+     *
+     * @param string $string
+     * @return string
+     */
+    public function clearString($string)
+    {
+        return preg_replace('/\s*/m', '', $string);
+    }
 }
