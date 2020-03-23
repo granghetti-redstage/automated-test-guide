@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="CustomerLoginTest">
+        <annotations>
+            <features value="AutomatedTests"/>
+            <stories value="Customer login"/>
+            <title value="Should be able to login as customer"/>
+            <description value="Should be able to login as customer"/>
+            <severity value="CRITICAL"/>
+            <testCaseId value="automatedTest1"/>
+            <group value="automatedTests"/>
+        </annotations>
+
+        <before>
+            <amOnPage url="{{CustomerLoginPage.url}}" stepKey="amOnCustomerLoginPage"/>
+        </before>
+
+        <after>
+            <!-- <actionGroup ref="logout" stepKey="logout1"/> -->
+        </after>
+
+        <!-- <actionGroup ref="CustomerLoginActionGroup" stepKey="loginAsCustomer"/> -->
+    </test>
+</tests>
