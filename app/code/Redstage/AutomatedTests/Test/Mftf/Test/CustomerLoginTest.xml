@@ -16,9 +16,9 @@
         </before>
 
         <after>
-            <!-- <actionGroup ref="logout" stepKey="logout1"/> -->
+            <amOnPage url="/customer/account/logout/" stepKey="amOnCustomerLogoutPage"/>
         </after>
 
-        <!-- <actionGroup ref="CustomerLoginActionGroup" stepKey="loginAsCustomer"/> -->
+        <actionGroup ref="CustomerLoginActionGroup" stepKey="customerLoginActionGroup" />
     </test>
 </tests>

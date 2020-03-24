@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <entities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:DataGenerator/etc/dataProfileSchema.xsd">
-    <entity name="ImportTestFile" type="importJob">
-        <data key="originalFilePath">/Inventory/SPIInventory.xlsx</data>
-        <data key="filePath">pub/media/acceptance/test.xlsx</data>
-        <data key="checkImageImportedFilePath">pub/media/acceptance/CheckImageImportedActionGroup.xlsx</data>
-        <data key="testProductSku">TESTDC57BC06</data>
-        <data key="testProductImageSku">PRODUCTIMAGE</data>
-        <data key="productWithImageURL">product-with-image-productimage.html</data>
+    <entity name="CustomerLogin" type="customer">
+        <data key="customerUser">test@redstage.com</data>
+        <data key="customerPass">@123123q</data>
     </entity>
 </entities>

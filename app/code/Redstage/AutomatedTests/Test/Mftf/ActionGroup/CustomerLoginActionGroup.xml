@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actionGroups xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/actionGroupSchema.xsd">
     <actionGroup name="CustomerLoginActionGroup">
-        <click selector="{{ImportJobFormSection.saveAndRun}}" stepKey="clickOnSaveAndRun"/>
-        <waitForAjaxLoad stepKey="waitForModalVisibleAjaxLoad"/>
-        <click selector="{{ImportJobFormSection.modalImportRun}}" stepKey="clickOnModalImportRun"/>
-        <waitForAjaxLoad time="10800" stepKey="waitIndefinedly" />
-        <see userInput="The import was successful." selector="{{ImportJobFormSection.debugRunContainer}}" stepKey="seeImportSuccessful" />
+        <fillField selector="{{CustomerLoginFormSection.loginEmail}}" userInput="{{CustomerLogin.customerUser}}" stepKey="fillLoginEmailWithCustomerUser" />
+        <fillField selector="{{CustomerLoginFormSection.loginPassword}}" userInput="{{CustomerLogin.customerPass}}" stepKey="fillLoginPasswordWithCustomerPass" />
+        <click selector="{{CustomerLoginFormSection.loginBtn}}" stepKey="clickOnLoginBtn"/>
+        <waitForPageLoad stepKey="waitForPageLoad" />
+        <see userInput="Account Information" selector="#maincontent" stepKey="seeAccountInformation" />
     </actionGroup>
 </actionGroups>
